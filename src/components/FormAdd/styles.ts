@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     width: '70%',
     padding: 5,
+    fontStyle: 'italic',
   },
   warning: {
     color: 'red',

@@ -25,8 +25,14 @@ const App: FC<any> = () => {
     setTodoItems((oldTodoItems) => [...oldTodoItems, newItem]);
   };
 
+  const deleteTodoItem = (id: string) => {
+    setTodoItems((oldTodoItems) =>
+      oldTodoItems.filter((item) => item.id !== id),
+    );
+  };
+
   const renderItem = ({item, index}: RenderItemType) => (
-    <TodoItem item={item} index={index} />
+    <TodoItem item={item} index={index} deleteTodoItem={deleteTodoItem} />
   );
 
   return (
@@ -41,7 +47,11 @@ const App: FC<any> = () => {
           keyExtractor={(item) => item.id}
         />
       </View>
-      <Navbar title="That`s awesome footer!" />
+      <Navbar
+        title="Press Add to Add"
+        title2="Long Press to Delete"
+        title3="Press F to pay Respects"
+      />
     </>
   );
 };

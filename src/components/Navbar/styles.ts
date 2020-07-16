@@ -5,14 +5,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'aquamarine',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: '12%',
-    paddingBottom: 5,
+    minHeight: '15%',
+    paddingBottom: 25,
   },
   text: {
     color: '#3D5ABC',
-    fontSize: 28,
+    fontSize: 24,
     textAlign: 'center',
     fontWeight: 'bold',
+    fontStyle: 'italic',
+  },
+  textDemo: {
+    color: '#3D5ABC',
+    fontSize: 30,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontStyle: 'italic',
   },
 });
 
