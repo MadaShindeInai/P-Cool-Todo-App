@@ -11,4 +11,7 @@ parserOptions: {
     'prettier/@typescript-eslint',
     'prettier/react',
   ],
+  rules: {
+    'react/prop-types': 0
+  }
 };
