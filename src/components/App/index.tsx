@@ -1,37 +1,28 @@
 import React, {FC} from 'react';
-import {View, FlatList} from 'react-native';
-import styles from './styles';
-import Navbar from '../Navbar';
-import FormAdd from '../FormAdd';
-import TodoItem from '../TodoItem';
+import {View} from 'react-native';
+import MainScreen from '../../screens/MainScreen';
+import TodoScreen from '../../screens/TodoScreen';
 import useApp from './useApp';
+import Navbar from '../Navbar';
 
-type TodoItemsType = {
-  id: string;
-  title: string;
-};
-export type RenderItemType = {
-  item: TodoItemsType;
-  index: number;
-};
+import styles from './styles';
 
 const App: FC<any> = () => {
-  const {deleteTodoItem, addTodoItem, todoItems} = useApp();
+  const {deleteTodoItem, addTodoItem, todoItems, todoId, setTodoId} = useApp();
 
-  const renderItem = ({item, index}: RenderItemType) => (
-    <TodoItem item={item} index={index} deleteTodoItem={deleteTodoItem} />
-  );
   return (
     <>
       <Navbar title="P cool TODO app" />
       <View style={styles.container}>
-        <FormAdd addTodoItem={addTodoItem} />
-        <FlatList
-          style={styles.todosContainer}
-          data={todoItems}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
+        {!todoId ? (
+          <MainScreen
+            todoItems={todoItems}
+            addTodoItem={addTodoItem}
+            deleteTodoItem={deleteTodoItem}
+          />
+        ) : (
+          <TodoScreen />
+        )}
       </View>
       <Navbar
         title="Press Add to Add"

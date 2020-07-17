@@ -1,12 +1,9 @@
 import {useState} from 'react';
-
-type TodoItemsType = {
-  id: string;
-  title: string;
-};
+import {TodoItemsType} from 'types';
 
 const useApp = () => {
   const [todoItems, setTodoItems] = useState<TodoItemsType[]>([]);
+  const [todoId, setTodoId] = useState<string | null>(null);
 
   const addTodoItem = (title: string) => {
     const newItem = {
@@ -22,7 +19,7 @@ const useApp = () => {
     );
   };
 
-  return {deleteTodoItem, addTodoItem, todoItems};
+  return {deleteTodoItem, addTodoItem, todoItems, todoId, setTodoId};
 };
 
 export default useApp;
