@@ -8,7 +8,14 @@ import Navbar from '../Navbar';
 import styles from './styles';
 
 const App: FC<any> = () => {
-  const {deleteTodoItem, addTodoItem, todoItems, todoId, setTodoId} = useApp();
+  const {
+    deleteTodoItem,
+    addTodoItem,
+    todoItems,
+    todoId,
+    setTodoId,
+    currentTodo,
+  } = useApp();
 
   return (
     <>
@@ -19,9 +26,14 @@ const App: FC<any> = () => {
             todoItems={todoItems}
             addTodoItem={addTodoItem}
             deleteTodoItem={deleteTodoItem}
+            openTodoItem={setTodoId}
           />
         ) : (
-          <TodoScreen />
+          <TodoScreen
+            deleteTodoItem={deleteTodoItem}
+            goMainMenu={setTodoId}
+            currTodo={currentTodo}
+          />
         )}
       </View>
       <Navbar

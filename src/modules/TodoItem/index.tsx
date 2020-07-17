@@ -9,12 +9,14 @@ type Props = {
     title: string;
   };
   deleteTodoItem: (id: string) => void;
+  openTodoItem: (id: string) => void;
 };
 
-const TodoItem: FC<Props> = ({item, index, deleteTodoItem}) => {
+const TodoItem: FC<Props> = ({item, index, deleteTodoItem, openTodoItem}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
+      onPress={() => openTodoItem(item.id)}
       onLongPress={() => deleteTodoItem(item.id)}>
       <View style={styles.container}>
         <Text style={styles.text}>
