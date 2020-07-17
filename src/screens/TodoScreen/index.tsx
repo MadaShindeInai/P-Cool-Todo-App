@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {View, Text, Button} from 'react-native';
 import {TodoItemsType} from 'types';
+import AppCard from '../../components/AppCard';
+
 import styles from './styles';
 
 type Props = {
@@ -8,14 +10,19 @@ type Props = {
   deleteTodoItem: (id: string) => void;
   currTodo: TodoItemsType | undefined;
 };
+
+const cardMargin = {marginBottom: 30};
+
 const TodoScreen: FC<Props> = ({goMainMenu, currTodo, deleteTodoItem}) => {
   return (
     <>
       <View>
-        <Text>{currTodo?.title}</Text>
+        <AppCard style={cardMargin}>
+          <Text style={styles.title}>{currTodo?.title}</Text>
+          <Button title="Edit" onPress={() => {}} />
+        </AppCard>
         <View style={styles.buttonsContainer}>
-          <View
-            style={currTodo ? styles.buttonContainer : styles.buttContainer}>
+          <View style={styles.buttonContainer}>
             <Button
               title="Back to main menu"
               onPress={() => goMainMenu(null)}

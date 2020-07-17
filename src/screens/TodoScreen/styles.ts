@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import THEME from '../../theme';
 
 const styles = StyleSheet.create({
   container: {},
@@ -10,8 +11,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: '48%',
   },
-  buttContainer: {
-    width: '100%',
+  title: {
+    fontSize: 26,
+    color: THEME.colors.TEXT,
   },
 });
 

@@ -4,6 +4,7 @@ const THEME = {
     MAIN: 'aquamarine',
     TEXT: '#3D5ABC',
     BORDER: 'skyblue',
+    SHADOW: 'black',
   },
 };
 export default THEME;

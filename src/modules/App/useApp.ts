@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {Alert} from 'react-native';
 import {TodoItemsType} from 'types';
 
 const useApp = () => {
@@ -18,13 +19,31 @@ const useApp = () => {
     setTodoItems((oldTodoItems) => [...oldTodoItems, newItem]);
   };
 
+  const currentTodo = todoItems.find((item) => item.id === todoId);
+
   const deleteTodoItem = (id: string) => {
-    setTodoItems((oldTodoItems) =>
-      oldTodoItems.filter((item) => item.id !== id),
+    Alert.alert(
+      'Item Deletion:',
+      `Do you really want to delete ${currentTodo?.title}?`,
+      [
+        {
+          text: 'No!',
+          style: 'cancel',
+        },
+        {
+          text: 'Sure',
+          style: 'destructive',
+          onPress: () => {
+            setTodoItems((oldTodoItems) =>
+              oldTodoItems.filter((item) => item.id !== id),
+            );
+            setTodoId(null);
+          },
+        },
+      ],
+      {cancelable: false},
     );
   };
-
-  const currentTodo = todoItems.find((item) => item.id === todoId);
 
   return {
     deleteTodoItem,
