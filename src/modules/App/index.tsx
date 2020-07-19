@@ -15,6 +15,7 @@ const App: FC<any> = () => {
     todoId,
     setTodoId,
     currentTodo,
+    saveEditedTitle,
   } = useApp();
 
   return (
@@ -33,6 +34,7 @@ const App: FC<any> = () => {
             deleteTodoItem={deleteTodoItem}
             goMainMenu={setTodoId}
             currTodo={currentTodo}
+            saveEditedTitle={saveEditedTitle}
           />
         )}
       </View>

@@ -1,5 +1,6 @@
+/* eslint-disable global-require */
 import React, {FC} from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, View, Image} from 'react-native';
 import {RenderItemType, TodoItemsType} from 'types';
 import FormAdd from '../../modules/FormAdd';
 import TodoItem from '../../modules/TodoItem';
@@ -30,12 +31,21 @@ const MainScreen: FC<Props> = ({
     <>
       <View style={styles.container}>
         <FormAdd addTodoItem={addTodoItem} />
-        <FlatList
-          style={styles.todosContainer}
-          data={todoItems}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
+        {todoItems.length ? (
+          <FlatList
+            style={styles.todosContainer}
+            data={todoItems}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+        ) : (
+          <View>
+            <Image
+              style={styles.image}
+              source={require('../../assets/images/empty.png')}
+            />
+          </View>
+        )}
       </View>
     </>
   );

@@ -1,15 +1,11 @@
+/* eslint-disable no-param-reassign */
 import {useState} from 'react';
 import {Alert} from 'react-native';
 import {TodoItemsType} from 'types';
 
 const useApp = () => {
-  const [todoItems, setTodoItems] = useState<TodoItemsType[]>([
-    {
-      id: '1',
-      title: 'Hye-hye',
-    },
-  ]);
-  const [todoId, setTodoId] = useState<string | null>('1');
+  const [todoItems, setTodoItems] = useState<TodoItemsType[]>([]);
+  const [todoId, setTodoId] = useState<string | null>(null);
 
   const addTodoItem = (title: string) => {
     const newItem = {
@@ -20,6 +16,14 @@ const useApp = () => {
   };
 
   const currentTodo = todoItems.find((item) => item.id === todoId);
+  const saveEditedTitle = (title: string, id: string) => {
+    setTodoItems((oldTodoItems) =>
+      oldTodoItems.map((item) => {
+        if (item.id === id) item.title = title;
+        return item;
+      }),
+    );
+  };
 
   const deleteTodoItem = (id: string) => {
     Alert.alert(
@@ -52,6 +56,7 @@ const useApp = () => {
     todoId,
     setTodoId,
     currentTodo,
+    saveEditedTitle,
   };
 };
 
