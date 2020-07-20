@@ -1,24 +1,24 @@
 import React, {FC} from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableHighlight, Text} from 'react-native';
 import THEME from '../../theme';
 import styles from './styles';
 
 type Props = {
   onPress: any;
-  color: string;
+  color?: string;
 };
 
 const AppButton: FC<Props> = ({
   children,
   onPress,
-  color = THEME.colors.MAIN,
+  color = THEME.colors.TEXT,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.6}>
+    <TouchableHighlight onPress={onPress} activeOpacity={0.2}>
       <View style={{...styles.container, backgroundColor: color}}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };
 

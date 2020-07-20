@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    ...THEME.fonts.light,
+    ...THEME.fonts.regular,
+    textAlign: 'left',
+    color: THEME.colors.TEXT,
     borderColor: THEME.colors.BORDER,
     borderWidth: 2,
     borderStyle: 'solid',
@@ -19,6 +21,9 @@ const styles = StyleSheet.create({
   warning: {
     ...THEME.fonts.bold,
     color: THEME.colors.DANGER,
+    position: 'absolute',
+    top: 70,
+    zIndex: 2,
   },
 });
 

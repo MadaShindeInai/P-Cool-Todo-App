@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text} from 'react-native';
 import {TodoItemsType} from 'types';
 import AppCard from 'src/components/AppCard';
 import THEME from 'src/theme';
@@ -38,7 +38,7 @@ const TodoScreen: FC<Props> = ({
           <Text numberOfLines={1} style={styles.title}>
             {currTodo?.title}
           </Text>
-          <Button title="Edit" onPress={() => setIsModalVisible(true)} />
+          <AppButton onPress={() => setIsModalVisible(true)}>Edit</AppButton>
         </AppCard>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
