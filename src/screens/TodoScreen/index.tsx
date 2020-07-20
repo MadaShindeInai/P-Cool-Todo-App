@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import {View, Text, Button} from 'react-native';
 import {TodoItemsType} from 'types';
-import THEME from '../../theme';
-import AppCard from '../../components/AppCard';
+import AppCard from 'src/components/AppCard';
+import THEME from 'src/theme';
+import ModalItemEdit from 'src/components/ModalItemEdit';
+import AppButton from 'src/components/AppButton';
 import useTodoScreen from './useTodoScreen';
-import ModalItemEdit from '../../components/ModalItemEdit';
-import AppButton from '../../components/AppButton';
 import styles from './styles';
 
 type Props = {
@@ -42,10 +42,6 @@ const TodoScreen: FC<Props> = ({
         </AppCard>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            {/* <Button
-              title="Back to main menu"
-              onPress={() => goMainMenu(null)}
-            /> */}
             <AppButton
               color={THEME.colors.INFO}
               onPress={() => goMainMenu(null)}>

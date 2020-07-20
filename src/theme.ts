@@ -12,42 +12,29 @@ type ThemeTypes = {
     title: {
       fontFamily: string;
       fontSize: number;
-      fontWeight:
-        | 'normal'
-        | 'bold'
-        | '100'
-        | '200'
-        | '300'
-        | '400'
-        | '500'
-        | '600'
-        | '700'
-        | '800'
-        | '900'
-        | undefined;
+      fontWeight: 'bold';
       fontStyle: 'italic' | 'normal' | undefined;
-      textAlign: 'center' | 'auto' | 'left' | 'right' | 'justify' | undefined;
+      textAlign: 'center';
     };
     light: {
       fontFamily: string;
       fontSize: number;
       fontStyle: 'italic' | 'normal' | undefined;
-      textAlign: 'center' | 'auto' | 'left' | 'right' | 'justify' | undefined;
+      textAlign: 'center';
     };
     regular: {
       fontFamily: string;
       fontSize: number;
       fontWeight: 'normal';
-
       fontStyle: 'italic' | 'normal' | undefined;
-      textAlign: 'center' | 'auto' | 'left' | 'right' | 'justify' | undefined;
+      textAlign: 'center';
     };
     bold: {
       fontFamily: string;
       fontSize: number;
       fontWeight: 'bold';
       fontStyle: 'italic' | 'normal' | undefined;
-      textAlign: 'center' | 'auto' | 'left' | 'right' | 'justify' | undefined;
+      textAlign: 'center';
     };
   };
 };
