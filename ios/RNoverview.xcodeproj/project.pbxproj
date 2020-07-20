@@ -18,6 +18,10 @@
 		6DE1035BF7DE317FE9E328C2 /* libPods-RNoverview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B32E30124374EF66F22F144 /* libPods-RNoverview.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C5A2E9E15985BB9A5A338FCD /* libPods-RNoverview-RNoverviewTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F36FD6641BD6D81442298FE /* libPods-RNoverview-RNoverviewTests.a */; };
+		84D74B30B6BE42A4AE117240 /* Kalam-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A9CFA4C5EEE40CAAA6C11C0 /* Kalam-Bold.ttf */; };
+		9497B37C26D9490C854ACE62 /* Kalam-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21A0E811EF354341B3BDFEC7 /* Kalam-Light.ttf */; };
+		F62C4CCE012E413E87B88BCC /* Kalam-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E244945870AF42B0BF6A14DD /* Kalam-Regular.ttf */; };
+		0C3D7224E4AF41F0BD25F52F /* PermanentMarker-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DC52A6FE1FE4476BA27DC91 /* PermanentMarker-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F3E913972B31574447799D3B /* Pods-RNoverview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNoverview.debug.xcconfig"; path = "Target Support Files/Pods-RNoverview/Pods-RNoverview.debug.xcconfig"; sourceTree = "<group>"; };
+		7A9CFA4C5EEE40CAAA6C11C0 /* Kalam-Bold.ttf */ = {isa = PBXFileReference; name = "Kalam-Bold.ttf"; path = "../src/assets/fonts/Kalam-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		21A0E811EF354341B3BDFEC7 /* Kalam-Light.ttf */ = {isa = PBXFileReference; name = "Kalam-Light.ttf"; path = "../src/assets/fonts/Kalam-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E244945870AF42B0BF6A14DD /* Kalam-Regular.ttf */ = {isa = PBXFileReference; name = "Kalam-Regular.ttf"; path = "../src/assets/fonts/Kalam-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2DC52A6FE1FE4476BA27DC91 /* PermanentMarker-Regular.ttf */ = {isa = PBXFileReference; name = "PermanentMarker-Regular.ttf"; path = "../src/assets/fonts/PermanentMarker-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +161,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				896751923113820FB4EA36BE /* Pods */,
+				E6B72106B38C4FCE8729A4A5 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -181,6 +190,18 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		E6B72106B38C4FCE8729A4A5 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				7A9CFA4C5EEE40CAAA6C11C0 /* Kalam-Bold.ttf */,
+				21A0E811EF354341B3BDFEC7 /* Kalam-Light.ttf */,
+				E244945870AF42B0BF6A14DD /* Kalam-Regular.ttf */,
+				2DC52A6FE1FE4476BA27DC91 /* PermanentMarker-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -324,6 +345,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				84D74B30B6BE42A4AE117240 /* Kalam-Bold.ttf in Resources */,
+				9497B37C26D9490C854ACE62 /* Kalam-Light.ttf in Resources */,
+				F62C4CCE012E413E87B88BCC /* Kalam-Regular.ttf in Resources */,
+				0C3D7224E4AF41F0BD25F52F /* PermanentMarker-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

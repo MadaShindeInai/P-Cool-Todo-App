@@ -28,26 +28,24 @@ const MainScreen: FC<Props> = ({
     />
   );
   return (
-    <>
-      <View style={styles.container}>
-        <FormAdd addTodoItem={addTodoItem} />
-        {todoItems.length ? (
-          <FlatList
-            style={styles.todosContainer}
-            data={todoItems}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+    <View style={styles.container}>
+      <FormAdd addTodoItem={addTodoItem} />
+      {todoItems.length ? (
+        <FlatList
+          style={styles.todosContainer}
+          data={todoItems}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      ) : (
+        <View>
+          <Image
+            style={styles.image}
+            source={require('../../assets/images/empty.png')}
           />
-        ) : (
-          <View>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/empty.png')}
-            />
-          </View>
-        )}
-      </View>
-    </>
+        </View>
+      )}
+    </View>
   );
 };
 

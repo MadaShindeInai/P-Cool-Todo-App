@@ -9,16 +9,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
+    ...THEME.fonts.light,
     borderColor: THEME.colors.BORDER,
     borderWidth: 2,
     borderStyle: 'solid',
     width: '70%',
     padding: 5,
-    fontStyle: 'italic',
   },
   warning: {
+    ...THEME.fonts.bold,
     color: THEME.colors.DANGER,
-    fontSize: 24,
   },
 });
 

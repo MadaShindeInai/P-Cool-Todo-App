@@ -33,7 +33,9 @@ const TodoScreen: FC<Props> = ({
       />
       <View>
         <AppCard style={cardMargin}>
-          <Text style={styles.title}>{currTodo?.title}</Text>
+          <Text numberOfLines={1} style={styles.title}>
+            {currTodo?.title}
+          </Text>
           <Button title="Edit" onPress={() => setIsModalVisible(true)} />
         </AppCard>
         <View style={styles.buttonsContainer}>

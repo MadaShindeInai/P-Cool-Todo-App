@@ -12,8 +12,11 @@ const styles = StyleSheet.create({
     width: '48%',
   },
   title: {
-    fontSize: 26,
+    ...THEME.fonts.bold,
     color: THEME.colors.TEXT,
+    textAlign: 'left',
+    paddingLeft: 15,
+    width: '70%',
   },
 });
 

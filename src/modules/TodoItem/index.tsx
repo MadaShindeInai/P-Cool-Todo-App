@@ -19,7 +19,7 @@ const TodoItem: FC<Props> = ({item, index, deleteTodoItem, openTodoItem}) => {
       onPress={() => openTodoItem(item.id)}
       onLongPress={() => deleteTodoItem(item.id)}>
       <View style={styles.container}>
-        <Text style={styles.text}>
+        <Text numberOfLines={1} style={styles.text}>
           {index + 1}. {item.title}
         </Text>
       </View>
