@@ -1,10 +1,10 @@
 const THEME = {
   colors: {
-    DANGER: 'red',
-    MAIN: 'aquamarine',
+    DANGER: '#bb2124',
+    MAIN: '#7fffd4',
     TEXT: '#3D5ABC',
-    BORDER: 'skyblue',
-    SHADOW: 'black',
+    BORDER: '#87ceeb',
+    SHADOW: '#000000',
     SUCCESS: '#22bb33',
   },
 };

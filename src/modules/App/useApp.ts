@@ -1,11 +1,12 @@
 /* eslint-disable no-param-reassign */
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 import {TodoItemsType} from 'types';
 
 const useApp = () => {
   const [todoItems, setTodoItems] = useState<TodoItemsType[]>([]);
   const [todoId, setTodoId] = useState<string | null>(null);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const addTodoItem = (title: string) => {
     const newItem = {
@@ -49,6 +50,11 @@ const useApp = () => {
     );
   };
 
+  useEffect(() => {
+    setTimeout(() => setIsLoaded(true), 3000);
+    return () => setIsLoaded(false);
+  }, []);
+
   return {
     deleteTodoItem,
     addTodoItem,
@@ -57,6 +63,7 @@ const useApp = () => {
     setTodoId,
     currentTodo,
     saveEditedTitle,
+    isLoaded,
   };
 };
 

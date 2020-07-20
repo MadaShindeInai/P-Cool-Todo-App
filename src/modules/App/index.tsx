@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
-import {View} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import MainScreen from '../../screens/MainScreen';
 import TodoScreen from '../../screens/TodoScreen';
 import useApp from './useApp';
 import Navbar from '../Navbar';
 
 import styles from './styles';
+import THEME from '../../theme';
 
 const App: FC<any> = () => {
   const {
@@ -16,7 +17,16 @@ const App: FC<any> = () => {
     setTodoId,
     currentTodo,
     saveEditedTitle,
+    isLoaded,
   } = useApp();
+
+  if (!isLoaded) {
+    return (
+      <View style={styles.spinner}>
+        <ActivityIndicator size="large" color={THEME.colors.BORDER} />
+      </View>
+    );
+  }
 
   return (
     <>
