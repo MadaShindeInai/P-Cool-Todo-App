@@ -6,6 +6,7 @@ type ThemeTypes = {
     BORDER: string;
     SHADOW: string;
     SUCCESS: string;
+    INFO: string;
   };
   fonts: {
     title: {
@@ -59,6 +60,7 @@ const THEME: ThemeTypes = {
     BORDER: '#87ceeb',
     SHADOW: '#000000',
     SUCCESS: '#22bb33',
+    INFO: '#5bc0de',
   },
   fonts: {
     title: {
