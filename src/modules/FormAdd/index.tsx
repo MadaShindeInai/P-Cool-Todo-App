@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {View, TextInput, Text} from 'react-native';
 import AppButton from 'src/components/AppButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import THEME from 'src/theme';
 import styles from './styles';
 import useFormAdd from './useFormAdd';
 
@@ -23,7 +24,7 @@ const FormAdd: FC<Props> = (props) => {
           autoCorrect={false}
         />
         <AppButton onPress={sendTodo}>
-          <Icon name="plus" size={24} color="#ffffff" />
+          <Icon name="plus" size={24} color={THEME.colors.WHITE} /> Add
         </AppButton>
       </View>
       {isModal && (

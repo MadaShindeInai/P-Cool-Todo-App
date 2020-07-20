@@ -7,6 +7,7 @@ type ThemeTypes = {
     SHADOW: string;
     SUCCESS: string;
     INFO: string;
+    WHITE: string;
   };
   fonts: {
     title: {
@@ -48,6 +49,7 @@ const THEME: ThemeTypes = {
     SHADOW: '#000000',
     SUCCESS: '#22bb33',
     INFO: '#5bc0de',
+    WHITE: '#FFFFFF',
   },
   fonts: {
     title: {
