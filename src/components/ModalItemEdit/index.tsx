@@ -1,13 +1,14 @@
 import React, {FC, Dispatch, SetStateAction} from 'react';
-import {View, Button, TextInput, Modal as RNModal} from 'react-native';
+import {View, TextInput, Modal as RNModal} from 'react-native';
 import THEME from '../../theme';
 import styles from './styles';
 import useModalItemEdit from './useModalItemEdit';
+import AppButton from '../AppButton';
 
 type Props = {
   isModalVisible: boolean;
   setIsModalVisible: Dispatch<SetStateAction<boolean>>;
-  saveEditedTitle: (inputValue: string, todoId: string) => void;
+  saveEditedTitle: (inputValue: string | undefined, todoId: string) => void;
   todoTitle: string | undefined;
   todoId: string | undefined;
 };
@@ -37,18 +38,16 @@ const ModalItemEdit: FC<Props> = ({
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.button}>
-            <Button
-              title="Cancel"
+            <AppButton
               color={THEME.colors.DANGER}
-              onPress={() => setIsModalVisible(false)}
-            />
+              onPress={() => setIsModalVisible(false)}>
+              Cancel
+            </AppButton>
           </View>
           <View style={styles.button}>
-            <Button
-              title="Save"
-              color={THEME.colors.SUCCESS}
-              onPress={changeTodo}
-            />
+            <AppButton color={THEME.colors.SUCCESS} onPress={changeTodo}>
+              Save
+            </AppButton>
           </View>
         </View>
       </View>

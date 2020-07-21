@@ -10,18 +10,13 @@ const styles = StyleSheet.create({
     paddingBottom: 25,
   },
   text: {
+    ...THEME.fonts.title,
     color: THEME.colors.TEXT,
-    fontSize: 24,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontStyle: 'italic',
   },
   textDemo: {
+    ...THEME.fonts.title,
     color: THEME.colors.TEXT,
-    fontSize: 30,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontStyle: 'italic',
+    fontSize: 34,
   },
 });
 

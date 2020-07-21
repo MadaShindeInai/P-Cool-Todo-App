@@ -14,8 +14,6 @@ const styles = StyleSheet.create({
     backgroundColor: THEME.colors.MAIN,
     elevation: 8,
   },
-  text: {},
-  textDemo: {},
 });
 
 export default styles;

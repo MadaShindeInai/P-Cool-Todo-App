@@ -9,16 +9,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
+    ...THEME.fonts.regular,
+    textAlign: 'left',
+    color: THEME.colors.TEXT,
     borderColor: THEME.colors.BORDER,
     borderWidth: 2,
     borderStyle: 'solid',
     width: '70%',
     padding: 5,
-    fontStyle: 'italic',
   },
   warning: {
+    ...THEME.fonts.bold,
     color: THEME.colors.DANGER,
-    fontSize: 24,
+    position: 'absolute',
+    top: 70,
+    zIndex: 2,
   },
 });
 

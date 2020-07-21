@@ -8,6 +8,7 @@ target 'RNoverview' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
   target 'RNoverviewTests' do
     inherit! :complete
     # Pods for testing

@@ -4,15 +4,16 @@ import THEME from '../../theme';
 const styles = StyleSheet.create({
   container: {},
   text: {
+    ...THEME.fonts.bold,
+    color: THEME.colors.TEXT,
+    textAlign: 'left',
+    fontSize: 22,
     borderColor: THEME.colors.BORDER,
     borderWidth: 2,
     borderStyle: 'solid',
-    paddingVertical: 8,
+    paddingVertical: 10,
     marginVertical: 5,
-    paddingHorizontal: 5,
-    color: THEME.colors.TEXT,
-    fontSize: 16,
-    fontWeight: 'bold',
+    paddingLeft: 25,
   },
 });
 

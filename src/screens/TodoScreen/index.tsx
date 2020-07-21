@@ -1,9 +1,11 @@
 import React, {FC} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text} from 'react-native';
 import {TodoItemsType} from 'types';
-import AppCard from '../../components/AppCard';
+import AppCard from 'src/components/AppCard';
+import THEME from 'src/theme';
+import ModalItemEdit from 'src/components/ModalItemEdit';
+import AppButton from 'src/components/AppButton';
 import useTodoScreen from './useTodoScreen';
-import ModalItemEdit from '../../components/ModalItemEdit';
 import styles from './styles';
 
 type Props = {
@@ -33,24 +35,25 @@ const TodoScreen: FC<Props> = ({
       />
       <View>
         <AppCard style={cardMargin}>
-          <Text style={styles.title}>{currTodo?.title}</Text>
-          <Button title="Edit" onPress={() => setIsModalVisible(true)} />
+          <Text numberOfLines={1} style={styles.title}>
+            {currTodo?.title}
+          </Text>
+          <AppButton onPress={() => setIsModalVisible(true)}>Edit</AppButton>
         </AppCard>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <Button
-              title="Back to main menu"
-              onPress={() => goMainMenu(null)}
-            />
+            <AppButton
+              color={THEME.colors.INFO}
+              onPress={() => goMainMenu(null)}>
+              Back
+            </AppButton>
           </View>
           <View style={styles.buttonContainer}>
-            {currTodo && (
-              <Button
-                title="Delete Item"
-                color="red"
-                onPress={() => deleteTodoItem(currTodo!.id)}
-              />
-            )}
+            <AppButton
+              color={THEME.colors.DANGER}
+              onPress={() => currTodo && deleteTodoItem(currTodo.id)}>
+              Delete Item
+            </AppButton>
           </View>
         </View>
       </View>
