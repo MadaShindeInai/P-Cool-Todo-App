@@ -45,42 +45,38 @@ const TodoScreen: FC<Props> = ({
           <AppButton onPress={() => setIsModalVisible(true)}>Edit</AppButton>
         </AppCard>
         <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <Button
-              icon={
-                <Icon2 name="arrow-undo" size={24} color={THEME.colors.WHITE} />
-              }
-              title="Go to Main"
-              raised
-              ViewComponent={LinearGradient}
-              containerStyle={styles.test}
-              buttonStyle={styles.test}
-              titleStyle={styles.testText}
-              linearGradientProps={{
-                colors: ['red', 'pink', 'green', 'yellow'],
-                start: {x: 0.5, y: 0},
-                end: {x: 0.5, y: 1},
-              }}
-              onPress={() => goMainMenu(null)}
-            />
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              icon={<Icon name="remove" size={24} color={THEME.colors.WHITE} />}
-              title="Delete Item"
-              raised
-              ViewComponent={LinearGradient}
-              containerStyle={styles.test}
-              buttonStyle={styles.test}
-              titleStyle={styles.testText}
-              linearGradientProps={{
-                colors: ['red', 'pink', 'green', 'yellow'],
-                start: {x: 0.5, y: 0},
-                end: {x: 0.5, y: 1},
-              }}
-              onPress={() => currTodo && deleteTodoItem(currTodo.id)}
-            />
-          </View>
+          <Button
+            icon={
+              <Icon2 name="arrow-undo" size={24} color={THEME.colors.WHITE} />
+            }
+            title="Go to Main"
+            raised
+            ViewComponent={LinearGradient}
+            containerStyle={styles.test}
+            buttonStyle={styles.test}
+            titleStyle={styles.testText}
+            linearGradientProps={{
+              colors: ['red', 'pink', 'green', 'yellow'],
+              start: {x: 0.5, y: 0},
+              end: {x: 0.5, y: 1},
+            }}
+            onPress={() => goMainMenu(null)}
+          />
+          <Button
+            icon={<Icon name="remove" size={24} color={THEME.colors.WHITE} />}
+            title="Delete Item"
+            raised
+            ViewComponent={LinearGradient}
+            containerStyle={styles.testCont}
+            buttonStyle={styles.test}
+            titleStyle={styles.testText}
+            linearGradientProps={{
+              colors: ['red', 'pink', 'green', 'yellow'],
+              start: {x: 0.5, y: 0},
+              end: {x: 0.5, y: 1},
+            }}
+            onPress={() => currTodo && deleteTodoItem(currTodo.id)}
+          />
         </View>
       </View>
     </>

@@ -8,16 +8,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
   },
-  buttonContainer: {
-    // width: Dimensions.get('window').width / 2.5,
-    width: Dimensions.get('window').width > 400 ? 160 : 100,
-  },
   title: {
     ...THEME.fonts.bold,
     color: THEME.colors.TEXT,
     textAlign: 'left',
     paddingLeft: 15,
     width: '70%',
+  },
+  testCont: {
+    height: 50,
+    width: Dimensions.get('window').width > 400 ? 160 : 100,
   },
   test: {
     height: 50,
