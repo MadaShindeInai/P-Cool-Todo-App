@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     // width: Dimensions.get('window').width / 2.5,
-    width: Dimensions.get('window').width > 400 ? 180 : 130,
+    width: Dimensions.get('window').width > 400 ? 160 : 100,
   },
   title: {
     ...THEME.fonts.bold,
@@ -18,6 +18,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     paddingLeft: 15,
     width: '70%',
+  },
+  test: {
+    height: 50,
+  },
+  testText: {
+    ...THEME.fonts.bold,
+    fontSize: 24,
+    paddingLeft: 5,
   },
 });
 
