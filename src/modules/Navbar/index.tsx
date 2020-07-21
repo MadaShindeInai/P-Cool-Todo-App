@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Platform} from 'react-native';
 import styles from './styles';
 
 type Props = {
@@ -11,7 +11,17 @@ type Props = {
 const Navbar: FC<Props> = ({title, title2, title3}) => {
   return (
     <>
-      <View style={styles.container}>
+      <View
+        style={{
+          ...styles.container,
+          ...Platform.select({
+            ios: {...styles.containerIos},
+            android: {...styles.containerAnrdoid},
+            default: {
+              backgroundColor: 'blue',
+            },
+          }),
+        }}>
         {!title2 && <Text style={styles.textDemo}>{title}</Text>}
         {title2 && <Text style={styles.text}>{title}</Text>}
         {title2 && <Text style={styles.text}>{title2}</Text>}

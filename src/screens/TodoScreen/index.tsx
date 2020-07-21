@@ -11,7 +11,7 @@ import styles from './styles';
 type Props = {
   goMainMenu: (id: string | null) => void;
   deleteTodoItem: (id: string) => void;
-  saveEditedTitle: (inputValue: string, todoId: string) => void;
+  saveEditedTitle: (inputValue: string | undefined, todoId: string) => void;
   currTodo: TodoItemsType | undefined;
 };
 

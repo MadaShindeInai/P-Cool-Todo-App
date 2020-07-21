@@ -12,6 +12,7 @@ parserOptions: {
     'prettier/react',
   ],
   rules: {
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    'global-require': 0
   }
 };

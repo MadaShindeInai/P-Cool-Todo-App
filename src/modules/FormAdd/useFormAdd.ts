@@ -8,7 +8,6 @@ type Props = {
 const useFormAdd = (props: Props) => {
   const {addTodoItem} = props;
   const [value, setValue] = useState('');
-  const [keyboardModal, setKeyboardModal] = useState(false);
   const sendTodo = () => {
     if (value === '') {
       Keyboard.dismiss();
@@ -23,15 +22,13 @@ const useFormAdd = (props: Props) => {
   useEffect(() => {
     Keyboard.addListener('keyboardDidHide', () => {
       Alert.alert('Aviasales! <---- search for cheap flights');
-      setKeyboardModal(true);
     });
     return () => {
-      if (keyboardModal) {
-        Keyboard.removeAllListeners('keyboardDidHide');
-        setKeyboardModal(false);
-      }
+      Keyboard.removeListener('keyboardDidHide', () => {
+        Alert.alert('Aviasales! <---- search for cheap flights');
+      });
     };
-  }, [keyboardModal]);
+  }, []);
 
   return {
     value,

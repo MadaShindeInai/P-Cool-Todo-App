@@ -1,9 +1,9 @@
-/* eslint-disable global-require */
 import React, {FC} from 'react';
 import {FlatList, View, Image} from 'react-native';
 import {RenderItemType, TodoItemsType} from 'types';
-import FormAdd from '../../modules/FormAdd';
-import TodoItem from '../../modules/TodoItem';
+import FormAdd from 'src/modules/FormAdd';
+import TodoItem from 'src/modules/TodoItem';
+import useMainScreen from './useMainScreen';
 import styles from './styles';
 
 type Props = {
@@ -19,6 +19,8 @@ const MainScreen: FC<Props> = ({
   deleteTodoItem,
   openTodoItem,
 }) => {
+  const {width} = useMainScreen();
+
   const renderItem = ({item, index}: RenderItemType) => (
     <TodoItem
       item={item}
@@ -31,12 +33,14 @@ const MainScreen: FC<Props> = ({
     <View style={styles.container}>
       <FormAdd addTodoItem={addTodoItem} />
       {todoItems.length ? (
-        <FlatList
-          style={styles.todosContainer}
-          data={todoItems}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
+        <View style={{width}}>
+          <FlatList
+            style={styles.todosContainer}
+            data={todoItems}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
       ) : (
         <View>
           <Image
