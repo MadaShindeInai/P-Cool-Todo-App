@@ -56,8 +56,8 @@ const TodoScreen: FC<Props> = ({
             buttonStyle={styles.test}
             titleStyle={styles.testText}
             linearGradientProps={{
-              colors: ['red', 'pink', 'green', 'yellow'],
-              start: {x: 0.5, y: 0},
+              colors: ['yellow', 'green', 'pink', 'red'],
+              start: {x: 0, y: 0.5},
               end: {x: 0.5, y: 1},
             }}
             onPress={() => goMainMenu(null)}
@@ -71,8 +71,8 @@ const TodoScreen: FC<Props> = ({
             buttonStyle={styles.test}
             titleStyle={styles.testText}
             linearGradientProps={{
-              colors: ['red', 'pink', 'green', 'yellow'],
-              start: {x: 0.5, y: 0},
+              colors: ['yellow', 'green', 'pink', 'red'],
+              start: {x: 0, y: 0.5},
               end: {x: 0.5, y: 1},
             }}
             onPress={() => currTodo && deleteTodoItem(currTodo.id)}
