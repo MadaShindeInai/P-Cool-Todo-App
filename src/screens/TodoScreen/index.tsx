@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {TodoItemsType} from 'types';
 import AppCard from 'src/components/AppCard';
 import THEME from 'src/theme';
@@ -52,6 +52,8 @@ const TodoScreen: FC<Props> = ({
             title="Go to Main"
             raised
             ViewComponent={LinearGradient}
+            TouchableComponent={TouchableOpacity}
+            activeOpacity={0.7}
             containerStyle={styles.test}
             buttonStyle={styles.test}
             titleStyle={styles.testText}
@@ -67,6 +69,8 @@ const TodoScreen: FC<Props> = ({
             title="Delete Item"
             raised
             ViewComponent={LinearGradient}
+            TouchableComponent={TouchableOpacity}
+            activeOpacity={0.7}
             containerStyle={styles.testCont}
             buttonStyle={styles.test}
             titleStyle={styles.testText}
