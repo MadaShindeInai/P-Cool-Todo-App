@@ -1,5 +1,11 @@
-import React, {FC} from 'react';
-import {View, TouchableHighlight, Text} from 'react-native';
+import React, {FC, ComponentType} from 'react';
+import {
+  View,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+  Platform,
+  Text,
+} from 'react-native';
 import THEME from '../../theme';
 import styles from './styles';
 
@@ -13,12 +19,14 @@ const AppButton: FC<Props> = ({
   onPress,
   color = THEME.colors.TEXT,
 }) => {
+  const WrapperBasedOnPlatform: ComponentType<any> =
+    Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight;
   return (
-    <TouchableHighlight onPress={onPress} activeOpacity={0.2}>
+    <WrapperBasedOnPlatform onPress={onPress} activeOpacity={0.7}>
       <View style={{...styles.container, backgroundColor: color}}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>
-    </TouchableHighlight>
+    </WrapperBasedOnPlatform>
   );
 };
 

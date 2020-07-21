@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {Alert} from 'react-native';
+import {useState, useEffect} from 'react';
+import {Alert, Keyboard} from 'react-native';
 
 type Props = {
   addTodoItem: (title: string) => void;
@@ -8,20 +8,33 @@ type Props = {
 const useFormAdd = (props: Props) => {
   const {addTodoItem} = props;
   const [value, setValue] = useState('');
-  const [isModal, setIsModal] = useState(false);
+  const [keyboardModal, setKeyboardModal] = useState(false);
   const sendTodo = () => {
     if (value === '') {
-      setIsModal(true);
-      setTimeout(() => setIsModal(false), 3000);
-      Alert.alert('A girl has no name');
+      Keyboard.dismiss();
+      Alert.alert('Pliz add text to the input field!!!!');
       return;
     }
     addTodoItem(value);
     setValue('');
+    Keyboard.dismiss();
   };
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidHide', () => {
+      Alert.alert('Aviasales! <---- search for cheap flights');
+      setKeyboardModal(true);
+    });
+    return () => {
+      if (keyboardModal) {
+        Keyboard.removeAllListeners('keyboardDidHide');
+        setKeyboardModal(false);
+      }
+    };
+  }, [keyboardModal]);
+
   return {
     value,
-    isModal,
     sendTodo,
     setValue,
   };

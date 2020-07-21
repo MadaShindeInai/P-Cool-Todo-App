@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, TextInput, Text} from 'react-native';
+import {View, TextInput} from 'react-native';
 import AppButton from 'src/components/AppButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import THEME from 'src/theme';
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const FormAdd: FC<Props> = (props) => {
-  const {isModal, sendTodo, setValue, value} = useFormAdd(props);
+  const {sendTodo, setValue, value} = useFormAdd(props);
 
   return (
     <>
@@ -27,9 +27,6 @@ const FormAdd: FC<Props> = (props) => {
           <Icon name="plus" size={24} color={THEME.colors.WHITE} /> Add
         </AppButton>
       </View>
-      {isModal && (
-        <Text style={styles.warning}>Pliz add text to the input field!!!!</Text>
-      )}
     </>
   );
 };
