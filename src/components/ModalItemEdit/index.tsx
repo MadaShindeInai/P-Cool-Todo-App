@@ -8,7 +8,7 @@ import AppButton from '../AppButton';
 type Props = {
   isModalVisible: boolean;
   setIsModalVisible: Dispatch<SetStateAction<boolean>>;
-  saveEditedTitle: (inputValue: string, todoId: string) => void;
+  saveEditedTitle: (inputValue: string | undefined, todoId: string) => void;
   todoTitle: string | undefined;
   todoId: string | undefined;
 };
