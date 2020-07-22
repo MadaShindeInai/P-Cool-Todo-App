@@ -16,13 +16,3 @@ export const TodoState: FC<any> = ({children}) => {
 };
 
 export default TodoState;
-
-// export const withContext = () => (App: any) => {
-//   return () => {
-//     return (
-//       <TodoState>
-//         <App />
-//       </TodoState>
-//     );
-//   };
-// };

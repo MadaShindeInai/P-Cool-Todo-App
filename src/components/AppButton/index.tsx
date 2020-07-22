@@ -21,10 +21,6 @@ const AppButton: FC<Props> = ({
 }) => {
   const WrapperBasedOnPlatform: ComponentType<any> =
     Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight;
-  // const WrapperBasedOnPlatform: ComponentType<any> = Platform.select({
-  //   ios: () => require('ComponentIOS'),
-  //   android: () => require('ComponentAndroid'),
-  // })();
 
   return (
     <WrapperBasedOnPlatform onPress={onPress} activeOpacity={0.7}>

@@ -58,6 +58,4 @@ const App: FC<any> = () => {
   );
 };
 
-// export default withContext()(App);
-
 export default App;
