@@ -1,29 +1,25 @@
-/* eslint-disable no-param-reassign */
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import {ADD_TODO, DELETE_TODO, EDIT_TODO} from 'src/constants';
 import {Alert} from 'react-native';
 import {TodoItemsType} from 'types';
+import TodoContext from 'src/context/todo/todoContext';
 
 const useApp = () => {
-  const [todoItems, setTodoItems] = useState<TodoItemsType[]>([]);
+  // const [todoItems, setTodoItems] = useState<TodoItemsType[]>([]);
   const [todoId, setTodoId] = useState<string | null>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const {todoItems, dispatch} = useContext(TodoContext);
+
+  const currentTodo = todoItems.find(
+    (item: TodoItemsType) => item.id === todoId,
+  );
 
   const addTodoItem = (title: string) => {
-    const newItem = {
-      id: Date.now().toString(),
-      title,
-    };
-    setTodoItems((oldTodoItems) => [...oldTodoItems, newItem]);
+    dispatch({type: ADD_TODO, payload: title});
   };
 
-  const currentTodo = todoItems.find((item) => item.id === todoId);
-  const saveEditedTitle = (title: string, id: string) => {
-    setTodoItems((oldTodoItems) =>
-      oldTodoItems.map((item) => {
-        if (item.id === id) item.title = title;
-        return item;
-      }),
-    );
+  const saveEditedTitle = (title: string | undefined, id: string) => {
+    dispatch({type: EDIT_TODO, payload: {id, title}});
   };
 
   const deleteTodoItem = (id: string) => {
@@ -39,9 +35,7 @@ const useApp = () => {
           text: 'Sure',
           style: 'destructive',
           onPress: () => {
-            setTodoItems((oldTodoItems) =>
-              oldTodoItems.filter((item) => item.id !== id),
-            );
+            dispatch({type: DELETE_TODO, payload: id});
             setTodoId(null);
           },
         },
