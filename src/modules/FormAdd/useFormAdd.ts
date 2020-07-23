@@ -1,12 +1,9 @@
-import {useState, useEffect} from 'react';
+import {useState, useContext} from 'react';
 import {Alert, Keyboard} from 'react-native';
+import TodoContext from 'src/context/todo/todoContext';
 
-type Props = {
-  addTodoItem: (title: string) => void;
-};
-
-const useFormAdd = (props: Props) => {
-  const {addTodoItem} = props;
+const useFormAdd = () => {
+  const {addTodoItem} = useContext(TodoContext);
   const [value, setValue] = useState('');
   const sendTodo = () => {
     if (value === '') {
@@ -18,17 +15,6 @@ const useFormAdd = (props: Props) => {
     setValue('');
     Keyboard.dismiss();
   };
-
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidHide', () => {
-      Alert.alert('Aviasales! <---- search for cheap flights');
-    });
-    return () => {
-      Keyboard.removeListener('keyboardDidHide', () => {
-        Alert.alert('Aviasales! <---- search for cheap flights');
-      });
-    };
-  }, []);
 
   return {
     value,

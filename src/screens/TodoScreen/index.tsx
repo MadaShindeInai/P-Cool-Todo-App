@@ -1,6 +1,5 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {TodoItemsType} from 'types';
 import AppCard from 'src/components/AppCard';
 import THEME from 'src/theme';
 import ModalItemEdit from 'src/components/ModalItemEdit';
@@ -9,38 +8,30 @@ import {Button} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Ionicons';
+import {ScreenContext} from 'src/context/screen/ScreenState';
+import TodoContext from 'src/context/todo/todoContext';
 import useTodoScreen from './useTodoScreen';
 import styles from './styles';
 
-type Props = {
-  goMainMenu: (id: string | null) => void;
-  deleteTodoItem: (id: string) => void;
-  saveEditedTitle: (inputValue: string | undefined, todoId: string) => void;
-  currTodo: TodoItemsType | undefined;
-};
+type Props = {};
 
 const cardMargin = {marginBottom: 30};
 
-const TodoScreen: FC<Props> = ({
-  goMainMenu,
-  currTodo,
-  deleteTodoItem,
-  saveEditedTitle,
-}) => {
-  const {isModalVisible, setIsModalVisible} = useTodoScreen();
+const TodoScreen: FC<Props> = () => {
+  const {deleteTodo} = useContext(TodoContext);
+  const {changeScreen} = useContext(ScreenContext);
+  const {isModalVisible, currTodo, setIsModalVisible} = useTodoScreen();
   return (
     <>
       <ModalItemEdit
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        todoTitle={currTodo?.title}
-        todoId={currTodo?.id}
-        saveEditedTitle={saveEditedTitle}
+        currTodo={currTodo}
       />
       <View>
         <AppCard style={cardMargin}>
           <Text numberOfLines={1} style={styles.title}>
-            {currTodo?.title}
+            {currTodo.title}
           </Text>
           <AppButton onPress={() => setIsModalVisible(true)}>Edit</AppButton>
         </AppCard>
@@ -62,7 +53,7 @@ const TodoScreen: FC<Props> = ({
               start: {x: 0, y: 0.5},
               end: {x: 0.5, y: 1},
             }}
-            onPress={() => goMainMenu(null)}
+            onPress={() => changeScreen(null)}
           />
           <Button
             icon={<Icon name="remove" size={24} color={THEME.colors.WHITE} />}
@@ -79,7 +70,7 @@ const TodoScreen: FC<Props> = ({
               start: {x: 0, y: 0.5},
               end: {x: 0.5, y: 1},
             }}
-            onPress={() => currTodo && deleteTodoItem(currTodo.id)}
+            onPress={() => deleteTodo(currTodo.id)}
           />
         </View>
       </View>

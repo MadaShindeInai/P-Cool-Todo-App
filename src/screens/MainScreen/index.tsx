@@ -1,38 +1,25 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import {FlatList, View, Image} from 'react-native';
-import {RenderItemType, TodoItemsType} from 'types';
+import {RenderItemType} from 'types';
 import FormAdd from 'src/modules/FormAdd';
 import TodoItem from 'src/modules/TodoItem';
 
+import TodoContext from 'src/context/todo/todoContext';
 import useMainScreen from './useMainScreen';
 import styles from './styles';
 
-type Props = {
-  addTodoItem: (title: string) => void;
-  deleteTodoItem: (id: string) => void;
-  openTodoItem: (id: string) => void;
-  todoItems: TodoItemsType[];
-};
+type Props = {};
 
-const MainScreen: FC<Props> = ({
-  addTodoItem,
-  todoItems,
-  deleteTodoItem,
-  openTodoItem,
-}) => {
+const MainScreen: FC<Props> = () => {
   const {width} = useMainScreen();
+  const {todoItems} = useContext(TodoContext);
 
   const renderItem = ({item, index}: RenderItemType) => (
-    <TodoItem
-      item={item}
-      index={index}
-      deleteTodoItem={deleteTodoItem}
-      openTodoItem={openTodoItem}
-    />
+    <TodoItem item={item} index={index} />
   );
   return (
     <View style={styles.container}>
-      <FormAdd addTodoItem={addTodoItem} />
+      <FormAdd />
       {todoItems.length ? (
         <View style={{width}}>
           <FlatList

@@ -6,12 +6,10 @@ import THEME from 'src/theme';
 import styles from './styles';
 import useFormAdd from './useFormAdd';
 
-type Props = {
-  addTodoItem: (title: string) => void;
-};
+type Props = {};
 
-const FormAdd: FC<Props> = (props) => {
-  const {sendTodo, setValue, value} = useFormAdd(props);
+const FormAdd: FC<Props> = () => {
+  const {sendTodo, setValue, value} = useFormAdd();
 
   return (
     <>

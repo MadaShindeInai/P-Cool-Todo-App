@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 
 import MainScreen from 'src/screens/MainScreen';
 import TodoScreen from 'src/screens/TodoScreen';
+import {ScreenContext} from 'src/context/screen/ScreenState';
 import useApp from './useApp';
 import Navbar from '../Navbar';
 
@@ -10,16 +11,8 @@ import styles from './styles';
 import THEME from '../../theme';
 
 const App: FC<any> = () => {
-  const {
-    deleteTodoItem = () => {},
-    addTodoItem = () => {},
-    todoItems,
-    todoId,
-    setTodoId,
-    currentTodo,
-    saveEditedTitle = () => {},
-    isLoaded,
-  } = useApp();
+  const {isLoaded} = useApp();
+  const {todoId} = useContext(ScreenContext);
 
   if (!isLoaded) {
     return (
@@ -33,21 +26,7 @@ const App: FC<any> = () => {
     <>
       <Navbar title="P cool TODO app" />
       <View style={styles.container}>
-        {!todoId ? (
-          <MainScreen
-            todoItems={todoItems}
-            addTodoItem={addTodoItem}
-            deleteTodoItem={deleteTodoItem}
-            openTodoItem={setTodoId}
-          />
-        ) : (
-          <TodoScreen
-            deleteTodoItem={deleteTodoItem}
-            goMainMenu={setTodoId}
-            currTodo={currentTodo}
-            saveEditedTitle={saveEditedTitle}
-          />
-        )}
+        {todoId ? <TodoScreen /> : <MainScreen />}
       </View>
       <Navbar
         title="Press Add to Add"

@@ -1,20 +1,18 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {Alert} from 'react-native';
+import {TodoItemsType} from 'types';
+import TodoContext from 'src/context/todo/todoContext';
 
 type Props = {
-  todoTitle?: string;
-  todoId?: string;
-  saveEditedTitle: (inputValue: string | undefined, todoId: string) => void;
+  currTodo: TodoItemsType;
   setIsModalVisible: (value: boolean) => void;
 };
 
-const useModalItemEdit = ({
-  todoTitle,
-  saveEditedTitle,
-  todoId = 'smth went wrong',
-  setIsModalVisible,
-}: Props) => {
-  const [inputValue, setValue] = useState(todoTitle);
+const useModalItemEdit = ({currTodo, setIsModalVisible}: Props) => {
+  const {title, id} = currTodo;
+  const [inputValue, setValue] = useState(title);
+  const {saveEditedTitle} = useContext(TodoContext);
+
   const changeTodo = () => {
     if (inputValue && inputValue.trim().length < 3) {
       Alert.alert(
@@ -24,14 +22,21 @@ const useModalItemEdit = ({
         } now`,
       );
     } else {
-      saveEditedTitle(inputValue, todoId);
+      saveEditedTitle(inputValue, id);
       setIsModalVisible(false);
     }
   };
+
+  const cancelEditMode = () => {
+    setValue(title);
+    setIsModalVisible(false);
+  };
+
   return {
     inputValue,
     setValue,
     changeTodo,
+    cancelEditMode,
   };
 };
 

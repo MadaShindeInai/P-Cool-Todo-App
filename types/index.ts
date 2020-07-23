@@ -5,5 +5,5 @@ export type RenderItemType = {
 
 export type TodoItemsType = {
   id: string;
-  title: string | undefined;
+  title: string;
 };
