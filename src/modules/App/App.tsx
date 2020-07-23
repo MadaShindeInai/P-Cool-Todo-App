@@ -4,17 +4,16 @@ import {View, ActivityIndicator} from 'react-native';
 import MainScreen from 'src/screens/MainScreen';
 import TodoScreen from 'src/screens/TodoScreen';
 import {ScreenContext} from 'src/context/screen/ScreenState';
-import useApp from './useApp';
 import Navbar from '../Navbar';
-
+import useApp from './useApp';
 import styles from './styles';
 import THEME from '../../theme';
 
 const App: FC<any> = () => {
-  const {isLoaded} = useApp();
+  const {loading} = useApp();
   const {todoId} = useContext(ScreenContext);
 
-  if (!isLoaded) {
+  if (loading) {
     return (
       <View style={styles.spinner}>
         <ActivityIndicator size="large" color={THEME.colors.BORDER} />

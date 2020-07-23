@@ -1,5 +1,14 @@
 import React, {FC, useReducer, useContext} from 'react';
-import {ADD_TODO, DELETE_TODO, EDIT_TODO} from 'src/constants';
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO,
+  SHOW_LOADER,
+  HIDE_LOADER,
+  SHOW_ERROR,
+  CLEAR_ERROR,
+  FETCH_TODOS,
+} from 'src/constants';
 import {Alert} from 'react-native';
 import {TodoItemsType} from 'types';
 import TodoContext from './todoContext';
@@ -8,13 +17,24 @@ import {ScreenContext} from '../screen/ScreenState';
 
 const TodoState: FC<any> = ({children}) => {
   const initialState = {
-    todoItems: [{id: '1', title: 'hye-hye'}],
+    todoItems: [],
+    loading: false,
+    error: null,
   };
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const {changeScreen} = useContext(ScreenContext);
 
-  const addTodoItem = (title: string) => {
-    dispatch({type: ADD_TODO, payload: title});
+  const addTodoItem = async (title: string) => {
+    const response = await fetch(
+      'https://rn-overview.firebaseio.com/todoItems.json',
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({title}),
+      },
+    );
+    const data = await response.json();
+    dispatch({type: ADD_TODO, payload: {title, id: data.name}});
   };
 
   const deleteTodo = (id: string) => {
@@ -46,13 +66,42 @@ const TodoState: FC<any> = ({children}) => {
     dispatch({type: EDIT_TODO, payload: {id, title}});
   };
 
+  const showLoader = () => dispatch({type: SHOW_LOADER});
+  const hideLoader = () => dispatch({type: HIDE_LOADER});
+
+  const fetchTodos = async () => {
+    // showLoader();
+    const response = await fetch(
+      'https://rn-overview.firebaseio.com/todoItems.json',
+      {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+      },
+    );
+    const data = await response.json();
+    const todoItems = Object.keys(data).map((key) => ({
+      // title: data[key].title,
+      ...data[key],
+      id: key,
+    }));
+    dispatch({type: FETCH_TODOS, payload: todoItems});
+    // hideLoader();
+  };
+
+  const showError = () => dispatch({type: SHOW_ERROR});
+  const clearError = (error: string) =>
+    dispatch({type: CLEAR_ERROR, payload: error});
+
   return (
     <TodoContext.Provider
       value={{
         todoItems: state.todoItems,
+        loading: state.loading,
+        error: state.error,
         addTodoItem,
         deleteTodo,
         saveEditedTitle,
+        fetchTodos,
       }}>
       {children}
     </TodoContext.Provider>
