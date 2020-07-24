@@ -1,5 +1,6 @@
 import React, {FC, Dispatch, SetStateAction} from 'react';
 import {View, TextInput, Modal as RNModal} from 'react-native';
+import {TodoItemsType} from 'types';
 import THEME from '../../theme';
 import styles from './styles';
 import useModalItemEdit from './useModalItemEdit';
@@ -8,23 +9,17 @@ import AppButton from '../AppButton';
 type Props = {
   isModalVisible: boolean;
   setIsModalVisible: Dispatch<SetStateAction<boolean>>;
-  saveEditedTitle: (inputValue: string | undefined, todoId: string) => void;
-  todoTitle: string | undefined;
-  todoId: string | undefined;
+  currTodo: TodoItemsType;
 };
 
 const ModalItemEdit: FC<Props> = ({
   isModalVisible,
   setIsModalVisible,
-  todoTitle,
-  saveEditedTitle,
-  todoId,
+  currTodo,
 }) => {
-  const {inputValue, setValue, changeTodo} = useModalItemEdit({
-    todoTitle,
-    saveEditedTitle,
-    todoId,
+  const {inputValue, setValue, changeTodo, cancelEditMode} = useModalItemEdit({
     setIsModalVisible,
+    currTodo,
   });
   return (
     <RNModal visible={isModalVisible} animationType="fade" transparent={false}>
@@ -38,9 +33,7 @@ const ModalItemEdit: FC<Props> = ({
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.button}>
-            <AppButton
-              color={THEME.colors.DANGER}
-              onPress={() => setIsModalVisible(false)}>
+            <AppButton color={THEME.colors.DANGER} onPress={cancelEditMode}>
               Cancel
             </AppButton>
           </View>

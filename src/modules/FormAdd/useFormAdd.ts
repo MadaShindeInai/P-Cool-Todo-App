@@ -1,27 +1,23 @@
-import {useState} from 'react';
-import {Alert} from 'react-native';
+import {useState, useContext} from 'react';
+import {Alert, Keyboard} from 'react-native';
+import TodoContext from 'src/context/todo/todoContext';
 
-type Props = {
-  addTodoItem: (title: string) => void;
-};
-
-const useFormAdd = (props: Props) => {
-  const {addTodoItem} = props;
+const useFormAdd = () => {
+  const {addTodoItem} = useContext(TodoContext);
   const [value, setValue] = useState('');
-  const [isModal, setIsModal] = useState(false);
   const sendTodo = () => {
     if (value === '') {
-      setIsModal(true);
-      setTimeout(() => setIsModal(false), 3000);
-      Alert.alert('A girl has no name');
+      Keyboard.dismiss();
+      Alert.alert('Pliz add text to the input field!!!!');
       return;
     }
     addTodoItem(value);
     setValue('');
+    Keyboard.dismiss();
   };
+
   return {
     value,
-    isModal,
     sendTodo,
     setValue,
   };

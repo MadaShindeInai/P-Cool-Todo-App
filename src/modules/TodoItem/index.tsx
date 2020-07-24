@@ -1,5 +1,7 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import {ScreenContext} from 'src/context/screen/ScreenState';
+import TodoContext from 'src/context/todo/todoContext';
 import styles from './styles';
 
 type Props = {
@@ -8,16 +10,17 @@ type Props = {
     id: string;
     title: string;
   };
-  deleteTodoItem: (id: string) => void;
-  openTodoItem: (id: string) => void;
 };
 
-const TodoItem: FC<Props> = ({item, index, deleteTodoItem, openTodoItem}) => {
+const TodoItem: FC<Props> = ({item, index}) => {
+  const {changeScreen} = useContext(ScreenContext);
+  const {deleteTodo} = useContext(TodoContext);
+
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={() => openTodoItem(item.id)}
-      onLongPress={() => deleteTodoItem(item.id)}>
+      onPress={() => changeScreen(item.id)}
+      onLongPress={() => deleteTodo(item.id)}>
       <View style={styles.container}>
         <Text numberOfLines={1} style={styles.text}>
           {index + 1}. {item.title}
