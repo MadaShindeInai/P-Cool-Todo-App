@@ -90,15 +90,15 @@ const TodoState: FC<any> = ({children}) => {
   };
 
   const fetchTodos = useCallback(async () => {
-    showLoader();
-    clearError();
+    showLoader(); // set true in state loading
+    clearError(); // set null in state error
     try {
-      const todoItems = await getData();
-      dispatch({type: FETCH_TODOS, payload: todoItems});
+      const todoItems = await getData(); // get and parse data
+      dispatch({type: FETCH_TODOS, payload: todoItems}); // set data in state todoItems
     } catch (e) {
-      showError('Something went wrong...');
+      showError('Something went wrong...'); // set text in state error
     } finally {
-      hideLoader();
+      hideLoader(); // set false in state loading
     }
   }, []);
 
