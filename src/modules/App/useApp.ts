@@ -1,17 +1,17 @@
-import {useEffect, useContext, useCallback} from 'react';
+import {useEffect, useContext} from 'react';
 import TodoContext from 'src/context/todo/todoContext';
 
 const useApp = () => {
-  const {loading, fetchTodos} = useContext(TodoContext);
-
-  const loadTodos = useCallback(async () => await fetchTodos(), [fetchTodos]);
+  const {loading, error, fetchTodos} = useContext(TodoContext);
 
   useEffect(() => {
-    loadTodos();
-  }, []);
+    fetchTodos();
+  }, [fetchTodos]);
 
   return {
     loading,
+    error,
+    fetchTodos,
   };
 };
 

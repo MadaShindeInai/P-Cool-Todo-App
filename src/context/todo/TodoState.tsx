@@ -1,4 +1,4 @@
-import React, {FC, useReducer, useContext} from 'react';
+import React, {FC, useReducer, useContext, useCallback} from 'react';
 import {
   ADD_TODO,
   DELETE_TODO,
@@ -68,9 +68,11 @@ const TodoState: FC<any> = ({children}) => {
 
   const showLoader = () => dispatch({type: SHOW_LOADER});
   const hideLoader = () => dispatch({type: HIDE_LOADER});
+  const showError = (error: string) =>
+    dispatch({type: SHOW_ERROR, payload: error});
+  const clearError = () => dispatch({type: CLEAR_ERROR});
 
-  const fetchTodos = async () => {
-    // showLoader();
+  const getData = async () => {
     const response = await fetch(
       'https://rn-overview.firebaseio.com/todoItems.json',
       {
@@ -84,13 +86,21 @@ const TodoState: FC<any> = ({children}) => {
       ...data[key],
       id: key,
     }));
-    dispatch({type: FETCH_TODOS, payload: todoItems});
-    // hideLoader();
+    return todoItems;
   };
 
-  const showError = () => dispatch({type: SHOW_ERROR});
-  const clearError = (error: string) =>
-    dispatch({type: CLEAR_ERROR, payload: error});
+  const fetchTodos = useCallback(async () => {
+    showLoader();
+    clearError();
+    try {
+      const todoItems = await getData();
+      dispatch({type: FETCH_TODOS, payload: todoItems});
+    } catch (e) {
+      showError('Something went wrong...');
+    } finally {
+      hideLoader();
+    }
+  }, []);
 
   return (
     <TodoContext.Provider
