@@ -11,7 +11,7 @@ import {
 } from 'src/constants';
 import {Alert} from 'react-native';
 import {TodoItemsType} from 'types';
-import {getData, addItemData, editItemData} from 'src/firebase';
+import {getData, addItemData, editItemData, deleteItemData} from 'src/firebase';
 import TodoContext from './todoContext';
 import todoReducer from './todoReducer';
 import {ScreenContext} from '../screen/ScreenState';
@@ -32,8 +32,13 @@ const TodoState: FC<any> = ({children}) => {
   const clearError = () => dispatch({type: CLEAR_ERROR});
 
   const addTodoItem = async (title: string) => {
-    const data = await addItemData(title);
-    dispatch({type: ADD_TODO, payload: {title, id: data.name}});
+    clearError();
+    try {
+      const data = await addItemData(title);
+      dispatch({type: ADD_TODO, payload: {title, id: data.name}});
+    } catch (e) {
+      showError('Something went wrong...');
+    }
   };
 
   const deleteTodo = (id: string) => {
@@ -51,9 +56,14 @@ const TodoState: FC<any> = ({children}) => {
         {
           text: 'Sure',
           style: 'destructive',
-          onPress: () => {
-            changeScreen(null);
-            dispatch({type: DELETE_TODO, payload: id});
+          onPress: async () => {
+            try {
+              changeScreen(null);
+              await deleteItemData(id);
+              dispatch({type: DELETE_TODO, payload: id});
+            } catch (e) {
+              showError('Something went wrong...');
+            }
           },
         },
       ],
@@ -65,10 +75,10 @@ const TodoState: FC<any> = ({children}) => {
     clearError();
     try {
       editItemData(id, title);
+      dispatch({type: EDIT_TODO, payload: {id, title}});
     } catch (e) {
       showError('Something went wrong...');
     }
-    dispatch({type: EDIT_TODO, payload: {id, title}});
   };
 
   const fetchTodos = useCallback(async () => {
@@ -78,6 +88,8 @@ const TodoState: FC<any> = ({children}) => {
       const todoItems = await getData(); // get and parse data
       dispatch({type: FETCH_TODOS, payload: todoItems}); // set data in state todoItems
     } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
       showError('Something went wrong...'); // set text in state error
     } finally {
       hideLoader(); // set false in state loading
