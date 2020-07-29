@@ -11,6 +11,7 @@ import {
 } from 'src/constants';
 import {Alert} from 'react-native';
 import {TodoItemsType} from 'types';
+import {getData, addItemData, editItemData} from 'src/firebase';
 import TodoContext from './todoContext';
 import todoReducer from './todoReducer';
 import {ScreenContext} from '../screen/ScreenState';
@@ -24,16 +25,14 @@ const TodoState: FC<any> = ({children}) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const {changeScreen} = useContext(ScreenContext);
 
+  const showLoader = () => dispatch({type: SHOW_LOADER});
+  const hideLoader = () => dispatch({type: HIDE_LOADER});
+  const showError = (error: string) =>
+    dispatch({type: SHOW_ERROR, payload: error});
+  const clearError = () => dispatch({type: CLEAR_ERROR});
+
   const addTodoItem = async (title: string) => {
-    const response = await fetch(
-      'https://rn-overview.firebaseio.com/todoItems.json',
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({title}),
-      },
-    );
-    const data = await response.json();
+    const data = await addItemData(title);
     dispatch({type: ADD_TODO, payload: {title, id: data.name}});
   };
 
@@ -63,30 +62,13 @@ const TodoState: FC<any> = ({children}) => {
   };
 
   const saveEditedTitle = (title: string | undefined, id: string) => {
+    clearError();
+    try {
+      editItemData(id, title);
+    } catch (e) {
+      showError('Something went wrong...');
+    }
     dispatch({type: EDIT_TODO, payload: {id, title}});
-  };
-
-  const showLoader = () => dispatch({type: SHOW_LOADER});
-  const hideLoader = () => dispatch({type: HIDE_LOADER});
-  const showError = (error: string) =>
-    dispatch({type: SHOW_ERROR, payload: error});
-  const clearError = () => dispatch({type: CLEAR_ERROR});
-
-  const getData = async () => {
-    const response = await fetch(
-      'https://rn-overview.firebaseio.com/todoItems.json',
-      {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'},
-      },
-    );
-    const data = await response.json();
-    const todoItems = Object.keys(data).map((key) => ({
-      // title: data[key].title,
-      ...data[key],
-      id: key,
-    }));
-    return todoItems;
   };
 
   const fetchTodos = useCallback(async () => {

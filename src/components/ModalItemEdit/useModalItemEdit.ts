@@ -13,7 +13,7 @@ const useModalItemEdit = ({currTodo, setIsModalVisible}: Props) => {
   const [inputValue, setValue] = useState(title);
   const {saveEditedTitle} = useContext(TodoContext);
 
-  const changeTodo = () => {
+  const changeTodo = async () => {
     if (inputValue && inputValue.trim().length < 3) {
       Alert.alert(
         'Error!',
@@ -22,7 +22,7 @@ const useModalItemEdit = ({currTodo, setIsModalVisible}: Props) => {
         } now`,
       );
     } else {
-      saveEditedTitle(inputValue, id);
+      await saveEditedTitle(inputValue, id);
       setIsModalVisible(false);
     }
   };
