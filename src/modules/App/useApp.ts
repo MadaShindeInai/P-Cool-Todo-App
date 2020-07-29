@@ -1,15 +1,17 @@
-import {useState, useEffect} from 'react';
+import {useEffect, useContext} from 'react';
+import TodoContext from 'src/context/todo/todoContext';
 
 const useApp = () => {
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const {loading, error, fetchTodos} = useContext(TodoContext);
 
   useEffect(() => {
-    setTimeout(() => setIsLoaded(true), 1000);
-    return () => setIsLoaded(false);
-  }, []);
+    fetchTodos();
+  }, [fetchTodos]);
 
   return {
-    isLoaded,
+    loading,
+    error,
+    fetchTodos,
   };
 };
 
