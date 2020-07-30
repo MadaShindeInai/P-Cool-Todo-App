@@ -17,6 +17,7 @@ const useMainScreen = () => {
       );
     };
   });
+
   return {
     width,
   };
